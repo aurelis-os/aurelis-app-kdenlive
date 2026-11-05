@@ -6,8 +6,8 @@ ARCH=$(uname -m)
 VERSION=$(pacman -Q kdenlive | awk '{print $2; exit}') # example command to get version of application here
 export ARCH VERSION
 export OUTPATH=./dist
-export ADD_HOOKS="self-updater.hook"
-export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*$ARCH.AppImage.zsync"
+# export ADD_HOOKS="self-updater.hook"
+# export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*$ARCH.AppImage.zsync"
 export ICON=/usr/share/icons/hicolor/256x256/apps/kdenlive.png
 export DESKTOP=/usr/share/applications/org.kde.kdenlive.desktop
 export DEPLOY_OPENGL=1
@@ -46,7 +46,9 @@ echo 'MLT_PRESETS_PATH=${SHARUN_DIR}/share/mlt-7/presets'   >> ./AppDir/.env
 echo 'PACKAGE_TYPE=appimage'                                >> ./AppDir/.env
 
 # Turn AppDir into AppImage
-quick-sharun --make-appimage
+GITHUB_REPOSITORY= quick-sharun --make-appimage
+rm -f ./dist/*.zsync
+sh ./pkg-meta.sh
 
 # test the final app
 quick-sharun --test ./dist/*.AppImage
