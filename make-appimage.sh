@@ -13,7 +13,7 @@ export DESKTOP=/usr/share/applications/org.kde.kdenlive.desktop
 export DEPLOY_OPENGL=1
 export DEPLOY_SDL=1
 export DEPLOY_PIPEWIRE=1
-export OPTIMIZE_LAUNCH=1
+export OPTIMIZE_LAUNCH=0
 export DEPLOY_P11KIT=1
 
 # Deploy dependencies
